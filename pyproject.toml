@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "custom-curve-signature"
+version = "0.2.0"
+description = "Digital signature library using TNM5224 elliptic curve with RFC 6979 deterministic signatures"
+authors = [
+  { name="Your Name", email="you@email.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
