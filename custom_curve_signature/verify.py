@@ -26,6 +26,7 @@ def verify(message_hash: int, signature, public_key: Point) -> bool:
 
     G = Point(TNM5224.Gx, TNM5224.Gy)
     X = G.multiply(u1).add(public_key.multiply(u2))
+    X = X.to_affine()  # <<< BẮT BUỘC
 
     if X.is_infinity():
         return False

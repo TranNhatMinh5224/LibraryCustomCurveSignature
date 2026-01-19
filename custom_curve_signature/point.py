@@ -11,7 +11,6 @@ class Point:
     z: Optional[int] = 1
     curve: object = TNM5224
 
-    # ===== Constructors =====
     @staticmethod
     def infinity():
         return Point(None, None, 0)
@@ -19,7 +18,9 @@ class Point:
     def is_infinity(self) -> bool:
         return self.z == 0
 
-    # ===== Conversion =====
+    # =========================
+    # Convert to affine
+    # =========================
     def to_affine(self):
         if self.is_infinity():
             return Point.infinity()
@@ -37,7 +38,9 @@ class Point:
 
         return Point(x, y, 1)
 
-    # ===== Validation =====
+    # =========================
+    # Check on curve (affine)
+    # =========================
     def is_on_curve(self) -> bool:
         if self.is_infinity():
             return True
@@ -51,7 +54,9 @@ class Point:
         right = mod(P.x**3 + a * P.x + b, p)
         return left == right
 
-    # ===== Jacobian Double =====
+    # =========================
+    # Jacobian Double
+    # =========================
     def double(self):
         if self.is_infinity():
             return self
@@ -77,7 +82,9 @@ class Point:
 
         return Point(X3, Y3, Z3)
 
-    # ===== Jacobian Add =====
+    # =========================
+    # Jacobian Add
+    # =========================
     def add(self, other):
         if self.is_infinity():
             return other
@@ -119,7 +126,9 @@ class Point:
 
         return Point(X3, Y3, Z3)
 
-    # ===== Montgomery Ladder =====
+    # =========================
+    # Montgomery Ladder
+    # =========================
     def multiply(self, k: int):
         if k == 0 or self.is_infinity():
             return Point.infinity()
